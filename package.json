@@ -1,7 +1,7 @@
 {
   "name": "Loli-B-backend",
   "version": "0.1.0",
-  "description": "intro to back-end development",
+  "description": "Backend for Loli-B-Bakery",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
