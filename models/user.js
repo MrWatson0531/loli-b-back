@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
   },
 
   cart: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "bakeryItem" }],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "item" }],
     default: [],
   },
 });
