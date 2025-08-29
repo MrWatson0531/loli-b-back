@@ -70,3 +70,10 @@ module.exports.validateSignup = celebrate({
       password: Joi.string().required(),
       }),
     });
+
+    module.exports.validateUser = celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().required(),
+    email: Joi.string().email().required()
+  }),
+});

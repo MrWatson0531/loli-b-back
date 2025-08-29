@@ -55,6 +55,7 @@ const getCart = async(req, res) => {
       if (String(cart.owner) !== req.user.id){
         return res.status(FORBIDDEN).send({ message: "User not authorized" }); 
       }
+      console.log('got cart')
       return cart
       .then(() => res.status(200).send({ message: "shopping cart successfully retreived"}))
     })}

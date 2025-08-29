@@ -56,38 +56,39 @@ const getCurrentUser = (req, res) => {
     });
 };
 
-const login = (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res
-      .status(BAD_REQUEST)
-      .send({ message: "The email and password fields are required" });
-  }
-  return User.findUserByCredentials(email, password)
-    .then((user) => {
-      const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
-        expiresIn: "7d",
-      });
-      res.send({
-        token,
-        user: {
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-        },
-      });
-    })
-    .catch((err) => {
-      if (err.message === "Incorrect email or password") {
-        return res
-          .status(NOT_AUTHORIZED)
-          .send({ message: "email or password are incorrect" });
-      }
-      if (err.name === "ValidationError") {
-        return res.status(BAD_REQUEST).send({ message: "Invalid Data" });
-      }
-      return res.status(DEFAULT).send({ message: "Login Failed" });
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res
+        .status(BAD_REQUEST)
+        .send({ message: "The email and password fields are required" });
+    }
+    const user = await User.findUserByCredentials(email, password);
+
+    const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
+      expiresIn: "7d",
     });
+
+    res.send({
+      token,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (err) {
+    if (err.message === "Incorrect email or password") {
+      return res
+        .status(NOT_AUTHORIZED)
+        .send({ message: "email or password are incorrect" });
+    }
+    if (err.name === "ValidationError") {
+      return res.status(BAD_REQUEST).send({ message: "Invalid Data" });
+    }
+    return res.status(DEFAULT).send({ message: "Login Failed" });
+  }
 };
 
 const updateUser = (req, res) => {

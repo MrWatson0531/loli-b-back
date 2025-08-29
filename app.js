@@ -13,6 +13,7 @@ mongoose
   })
   .catch(console.error);
 const indexRouter = require("./routes/index");
+const cartRouter = require("./routes/cart"); //????
 
 app.use(cors());
 app.use(express.json());
@@ -21,6 +22,8 @@ app.use(express.json());
 //   next();
 // });
 app.use("/", indexRouter);
+app.use("/", cartRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);});
+  console.log(`Server is running on port ${PORT}`);
+});
