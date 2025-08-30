@@ -7,7 +7,7 @@ const NotFoundError = require("../errors/NotFoundError");
 
 // Routes
 router.use("/users", userRouter); // all /users routes
-router.use("/cart", cartRouter);   // all /cart routes
+router.use("/cart", cartRouter); // all /cart routes
 
 // Auth routes
 router.post("/signin", validateSignin, login);
@@ -23,7 +23,7 @@ router.use((err, req, res, next) => {
   console.error(err); // log the error for debugging
 
   const statusCode = err.statusCode || 500; // default to 500 if not specified
-  const message = err.message || "Internal Server Error";
+  const message = err.message || " Internal Server Error ";
 
   res.status(statusCode).json({ message });
 });

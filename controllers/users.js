@@ -111,4 +111,4 @@ const updateUser = (req, res) => {
       return res.status(DEFAULT).send({ messsage: "Failed to update user" });
     });
 };
-module.exports = { createUser, getCurrentUser, login, updateUser };
+module.exports = {createUser, getCurrentUser, login, updateUser};
