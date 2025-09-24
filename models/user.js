@@ -28,10 +28,15 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
 
+  // cart: {
+  //   type: [{ type: mongoose.Schema.Types.ObjectId, ref: "item" }],
+  //   default: [],
+  // },
+
   cart: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "item" }],
-    default: [],
-  },
+    type:Map,
+    of: Number
+  } // { [] , 
 });
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(

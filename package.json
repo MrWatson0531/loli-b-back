@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Backend for Loli-B-Bakery",
   "main": "app.js",
+  "homepage": "https://loli-b-bakery.smelly.cc",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
